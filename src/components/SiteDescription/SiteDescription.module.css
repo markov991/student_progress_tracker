@@ -1,0 +1,14 @@
+.siteDescription {
+  /* background: aqua; */
+  color: azure;
+  width: 50%;
+}
+.siteDescription h1 {
+  font-size: 2.4rem;
+  /* color: aliceblue; */
+  text-align: center;
+}
+.siteDescription p {
+  font-size: 1.6rem;
+  text-align: justify;
+}

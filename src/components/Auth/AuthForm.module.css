@@ -1,0 +1,70 @@
+.auth {
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 3rem;
+  flex-grow: 0.5;
+  /* width: 40%; */
+}
+.auth h2 {
+  font-size: 2rem;
+}
+.auth form {
+  width: 80%;
+}
+
+.auth button {
+  background: #0084ab;
+  padding: 0.5rem 1rem;
+  border: none;
+  text-align: center;
+}
+
+.control label {
+  display: block;
+  /* margin-top: 2rem; */
+  margin-bottom: 3px;
+  font-size: 1.6rem;
+}
+
+.control input {
+  background: #4db2ff6b;
+  padding: 1rem;
+  font-size: 1.6rem;
+  margin-bottom: 2.5rem;
+
+  border: none;
+  width: 100%;
+}
+.control input::placeholder {
+  color: aqua;
+}
+
+.buttonSub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.buttonSub button {
+  font-size: 1.8rem;
+  border-radius: 5px;
+  color: #fff;
+  padding: 1rem 4rem;
+}
+.switchForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.switchForm button {
+  text-decoration: none;
+  color: aqua;
+  background-color: transparent;
+  margin-top: 2rem;
+  font-size: 1.4rem;
+}
+.switchForm button:hover,
+.switchForm button:active {
+  cursor: pointer;
+}
