@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useRef } from "react";
 import * as classes from "./AuthForm.module.css";
 import { authActions } from "../../store/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 
+import { creatingAccount, loggingToAnAccount } from "../../store/authActions";
+
 const AuthForm = () => {
   const dispatch = useDispatch();
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
   const haveAnAccoont = useSelector((state) => state.auth.haveAnAccount);
+  const x = useSelector((state) => state.auth.user);
+
   const toggleAuthComp = (e) => {
     e.preventDefault();
     dispatch(authActions.toogleAuth());
   };
 
-  const submitHandler = () => {};
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+
+    if (haveAnAccoont) {
+      dispatch(loggingToAnAccount(enteredEmail, enteredPassword));
+    }
+    if (!haveAnAccoont) {
+      dispatch(creatingAccount(enteredEmail, enteredPassword));
+    }
+  };
 
   return (
     <section className={classes.auth}>
@@ -19,13 +37,21 @@ const AuthForm = () => {
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor="email">Your email</label>
-          <input type="email" id="email" placeholder="Plese enter your email" />
+          <input
+            type="email"
+            id="email"
+            required
+            ref={emailInputRef}
+            placeholder="Plese enter your email"
+          />
         </div>
         <div className={classes.control}>
           <label htmlFor="password">Your password</label>
           <input
             type="password"
             id="password"
+            required
+            ref={passwordInputRef}
             placeholder="Please enter your password"
           />
         </div>

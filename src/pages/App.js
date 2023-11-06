@@ -1,14 +1,16 @@
 import React from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import AuthPage from "./AuthPage";
+import HomePage from "./HomePage";
 
 const App = () => {
+  const isLogedIn = useSelector((state) => state.auth.isLogedIn);
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<AuthPage />} />
-      </Routes>
+      {!isLogedIn && <AuthPage />}
+      {isLogedIn && <HomePage />}
     </>
   );
 };
