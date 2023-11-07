@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+
 import * as classes from "./AuthForm.module.css";
 import { authActions } from "../../store/authSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +12,6 @@ const AuthForm = () => {
   const passwordInputRef = useRef();
 
   const haveAnAccoont = useSelector((state) => state.auth.haveAnAccount);
-  const x = useSelector((state) => state.auth.user);
 
   const toggleAuthComp = (e) => {
     e.preventDefault();
