@@ -3,10 +3,21 @@
 }
 html {
   font-size: 62.5%;
+  color: #fff;
 }
 
 body {
   font-family: "Open Sans", "Lato", sans-serif;
   margin: 0;
   background: linear-gradient(to right, #2b5c82, #00365e);
+}
+.grid-2-coll {
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+  grid-template-columns: 1fr 3fr;
+}
+.flex-centered {
+  display: flex;
+  justify-content: center;
 }

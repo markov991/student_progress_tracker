@@ -1,0 +1,29 @@
+.basic_user_info {
+  color: aliceblue;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.basic_user_info h2 {
+  font-size: 3.2rem;
+  margin: 4rem 0 1rem 0;
+}
+.facilty_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-size: 1.8rem;
+}
+.center_underline {
+  border-bottom: 1px solid #dadada;
+  width: 80%;
+}
+
+.facilty_info span {
+  margin-top: 2rem;
+}
+.facilty_info :last-child {
+  margin-bottom: 1rem;
+}

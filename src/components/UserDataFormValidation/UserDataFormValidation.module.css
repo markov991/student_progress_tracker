@@ -1,0 +1,39 @@
+.userDataFormBox {
+  width: 80rem;
+  margin-top: 10rem;
+}
+
+.userDataFormBox h2,
+.userDataFormBox p {
+  text-align: center;
+}
+
+.userDataFormBox form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.userDataFormBox label {
+  font-size: 1.6rem;
+  margin-top: 2rem;
+}
+
+form div > div {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  width: 80%;
+}
+select {
+  width: 50%;
+}
+.btn_sub {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: center;
+}
+.btn_sub button {
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+}
