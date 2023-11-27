@@ -13,7 +13,6 @@ export const creatingAccount = (email, password) => {
             email: email,
             password: password,
             returnSecureToken: true,
-            userName: userName,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -53,7 +52,7 @@ export const creatingAccount = (email, password) => {
         );
         const data = await sendingdata.json();
       };
-      creatingDataInDatabase();
+      await creatingDataInDatabase();
 
       dispatch(
         authActions.logingIn({

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Card from "../components/UI/Card";
 import SiteDescription from "../components/SiteDescription/SiteDescription";
 import AuthForm from "../components/Auth/AuthForm";
@@ -11,7 +11,7 @@ const AuthPage = () => {
         <AuthForm />
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default AuthPage
+export default AuthPage;

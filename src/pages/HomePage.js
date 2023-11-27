@@ -5,6 +5,7 @@ import "./index.css";
 
 import UserPageContent from "../components/UserPageContent/UserPageContent";
 import UserDataFormValidation from "../components/UserDataFormValidation/UserDataFormValidation";
+import LoadingSpiner from "../components/UI/LoadingSpiner";
 
 const HomePage = () => {
   const USERS_DUMMY = [
@@ -46,6 +47,7 @@ const HomePage = () => {
     },
   ];
   const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.ui.isLoading);
   const userId = useSelector((state) => state.auth.userId);
   const userInfoFilled = useSelector((state) => state.userInfo.userInfoFilled);
 
@@ -59,12 +61,13 @@ const HomePage = () => {
   console.log(userId);
   return (
     <>
-      {userInfoFilled && (
+      {isLoading && <LoadingSpiner />}
+      {!isLoading && userInfoFilled && (
         <div className="grid-2-coll">
           <UserPageContent />
         </div>
       )}
-      {!userInfoFilled && (
+      {!isLoading && !userInfoFilled && (
         <div className="flex-centered">
           <UserDataFormValidation />
         </div>

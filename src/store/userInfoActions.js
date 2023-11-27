@@ -1,9 +1,9 @@
 import { userInfoActions } from "./userInfoSlice";
-
-
+import { uiActions } from "./ui-slice";
 
 export const gettingDataFromDatabase = (userId) => {
   return async (dispatch) => {
+    dispatch(uiActions.setIsLoading({ isLoading: true }));
     const gettingData = async () => {
       const sendingRequest = await fetch(
         `https://student-progress-tracker-f93fc-default-rtdb.firebaseio.com/users/${userId}.json`
@@ -27,6 +27,7 @@ export const gettingDataFromDatabase = (userId) => {
           userInfoFilled: dataFetchResult.userInfoFilled,
         })
       );
+      dispatch(uiActions.setIsLoading({ isLoading: false }));
     } catch (error) {
       alert(error);
     }
@@ -61,13 +62,9 @@ export const sendingDataAfterRegistrationToDatabase = (userId, info) => {
       throw new Error("Something went wrong");
     }
     try {
-      await sendingData();
-
-      gettingDataFromDatabase(userId);
+      dispatch(gettingDataFromDatabase(userId));
     } catch (error) {
       alert(error);
     }
-    // const data = await sendingData.json();
-    // sendingData();
   };
 };
