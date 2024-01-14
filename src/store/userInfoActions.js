@@ -12,7 +12,6 @@ export const gettingDataFromDatabase = (userId) => {
         throw new Error("Couldnt fetch user data");
       }
       const data = await sendingRequest.json();
-      console.log(data);
       return data;
     };
     try {
@@ -46,10 +45,11 @@ export const sendingDataAfterRegistrationToDatabase = (userId, info) => {
           userInfoFilled: true,
           userType: info.userType,
           userName: info.userName,
+          userExams: null,
           userInfo: {
             faculty: info.userInfo.faculty,
             name: info.userInfo.name,
-            studiesType: info.userInfo.studiesType,
+
             university: info.userInfo.university,
           },
         }),

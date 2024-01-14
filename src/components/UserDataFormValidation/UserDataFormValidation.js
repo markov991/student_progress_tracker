@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import * as classes from "./UserDataFormValidation.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { sendingDataAfterRegistrationToDatabase } from "../../store/userInfoActions";
@@ -12,7 +12,6 @@ const UserDataFormValidation = () => {
   const acctype = useRef();
   const facultyRef = useRef();
   const universityRef = useRef();
-  const studiesTypeRef = useRef();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -22,26 +21,36 @@ const UserDataFormValidation = () => {
     const userInfo = {
       name: fullName,
       faculty: facultyRef.current.value,
-      studiesType: studiesTypeRef.current.value,
+
       university: universityRef.current.value,
     };
-    // console.log(fullName);
-    dispatch(
-      sendingDataAfterRegistrationToDatabase(userId, {
-        userName: userName,
-        userType: userType,
-        userId: userId,
-        userInfo,
-      })
-    );
 
-    if (acctype.current.value) {
-      console.log("ima ga");
+    if (
+      !firstNameRef.current.value ||
+      !lastNameRef.current.value ||
+      !acctype.current.value ||
+      !facultyRef.current.value ||
+      !universityRef.current.value
+    ) {
+      alert("All fields must be fullfiled!!!");
+      return;
     }
-    if (!acctype.current.value) {
-      console.log("nema ga");
+    if (
+      firstNameRef.current.value &&
+      lastNameRef.current.value &&
+      acctype.current.value &&
+      facultyRef.current.value &&
+      universityRef.current.value
+    ) {
+      dispatch(
+        sendingDataAfterRegistrationToDatabase(userId, {
+          userName: userName,
+          userType: userType,
+          userId: userId,
+          userInfo,
+        })
+      );
     }
-    console.log(acctype.current.value);
   };
 
   return (
@@ -72,8 +81,9 @@ const UserDataFormValidation = () => {
             <label htmlFor="type-select">Account type</label>
             <select name="types" id="type-select" ref={acctype}>
               <option value="">Please select</option>
-              <option value="student">Student</option>
-              <option value="profesor">Profesor</option>
+              <option value="Assistant Professor">Assistant Professor</option>
+              <option value="Associate Professor">Associate Professor</option>
+              <option value="Full Professor">Full Professor</option>
             </select>
           </div>
         </div>
@@ -95,10 +105,6 @@ const UserDataFormValidation = () => {
               ref={universityRef}
               placeholder="Please eneter university you are in"
             />
-          </div>
-          <div>
-            <label htmlFor="studies-type">Studies type</label>
-            <input type="text" id="studies-type" ref={studiesTypeRef} />
           </div>
         </div>
         <div className={classes.btn_sub}>

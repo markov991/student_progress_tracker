@@ -38,6 +38,7 @@ export const creatingAccount = (email, password) => {
               userInfoFilled: false,
               userType: null,
               userName: userName,
+              userExams: null,
               userInfo: {
                 faculty: null,
                 name: null,

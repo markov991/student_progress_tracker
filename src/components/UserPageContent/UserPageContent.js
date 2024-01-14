@@ -15,7 +15,7 @@ const UserPageContent = (props) => {
         <BasicUserInfo
           user={{
             name: user.userInfo.name,
-            studiesType: user.userInfo.studiesType,
+            userType: user.userType,
             faculty: user.userInfo.faculty,
             university: user.userInfo.university,
           }}
