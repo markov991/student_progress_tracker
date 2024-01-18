@@ -7,6 +7,12 @@
 .userDataFormBox p {
   text-align: center;
 }
+.userDataFormBox h2 {
+  font-size: 2rem;
+}
+.userDataFormBox p {
+  font-size: 1.6rem;
+}
 
 .userDataFormBox form {
   display: grid;
@@ -18,14 +24,14 @@
   margin-top: 2rem;
 }
 
-form div > div {
+.userDataFormBox form div > div {
   display: flex;
   flex-direction: column;
 }
-input {
+.userDataFormBox input {
   width: 80%;
 }
-select {
+.userDataFormBox select {
   width: 50%;
 }
 .btn_sub {
