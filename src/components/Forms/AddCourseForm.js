@@ -1,7 +1,7 @@
 import React from "react";
 import * as classes from "./AddCourseForm.module.css";
 
-const AddCourseForm = () => {
+const AddCourseForm = ({ onClose }) => {
   return (
     <form className={classes.course_modal}>
       <div>
@@ -23,7 +23,7 @@ const AddCourseForm = () => {
         </div>
         <div className={classes.button_box}>
           <button>Add</button>
-          <button>Close</button>
+          <button onClick={onClose}>Close</button>
         </div>
       </div>
     </form>

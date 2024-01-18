@@ -13,6 +13,10 @@ const UserPageContent = (props) => {
   const user = useSelector((state) => state.userInfo);
 
   const [showModal, setShowMOdal] = useState(false);
+  const closeModalHandler = (e) => {
+    e.preventDefault();
+    setShowMOdal(false);
+  };
 
   // console.log(user);
 
@@ -36,9 +40,9 @@ const UserPageContent = (props) => {
 
       {showModal &&
         createPortal(
-          <Modal onClose={() => setShowMOdal(false)}>
-            <AddCourseForm />
-            <button onClick={() => setShowMOdal(false)}>Close</button>
+          <Modal onClose={closeModalHandler}>
+            <AddCourseForm onClose={closeModalHandler} />
+            {/* <button onClick={closeModalHandler}>Close</button> */}
           </Modal>,
           document.body
           // document.getElementById("___gatsby")
