@@ -24,6 +24,7 @@ export const gettingDataFromDatabase = (userId) => {
           userInfo: dataFetchResult.userInfo,
           userId: userId,
           userInfoFilled: dataFetchResult.userInfoFilled,
+          userCourses: dataFetchResult.userCourses,
         })
       );
       dispatch(uiActions.setIsLoading({ isLoading: false }));
@@ -32,9 +33,35 @@ export const gettingDataFromDatabase = (userId) => {
     }
   };
 };
+export const addingCourseToUser = (userId, course) => {
+  return async (dispatch) => {
+    const sendingCourseData = await fetch(
+      `https://student-progress-tracker-f93fc-default-rtdb.firebaseio.com/users/${userId}/userCourses.json`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          courseName: course.courseName,
+          courseYear: course.courseYear,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!sendingCourseData.ok) {
+      throw new Error("not ok");
+    }
+    try {
+      // const data = await sendingCourseData.json();
+      dispatch(gettingDataFromDatabase(userId));
+      dispatch(uiActions.setIsOpen({ modalIsOpen: false }));
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
 
 export const sendingDataAfterRegistrationToDatabase = (userId, info) => {
-  console.log(info);
   return async (dispatch) => {
     const sendingData = await fetch(
       ` https://student-progress-tracker-f93fc-default-rtdb.firebaseio.com/users/${userId}.json`,
@@ -45,7 +72,7 @@ export const sendingDataAfterRegistrationToDatabase = (userId, info) => {
           userInfoFilled: true,
           userType: info.userType,
           userName: info.userName,
-          userExams: null,
+          userCourses: null,
           userInfo: {
             faculty: info.userInfo.faculty,
             name: info.userInfo.name,

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { uiActions } from "../../store/ui-slice";
 import * as classes from "./UserPageContent.module.css";
 
 import SideBar from "../UI/SideBar";
@@ -10,12 +11,20 @@ import Modal from "../UI/Modal";
 import AddCourseForm from "../Forms/addCourseForm";
 
 const UserPageContent = (props) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.userInfo);
+  const showModal = useSelector((state) => state.ui.modalIsOpen);
+  console.log(showModal);
 
-  const [showModal, setShowMOdal] = useState(false);
+  // const [showModal, setShowMOdal] = useState(false);
   const closeModalHandler = (e) => {
     e.preventDefault();
-    setShowMOdal(false);
+    dispatch(uiActions.setIsOpen({ modalIsOpen: false }));
+    // setShowMOdal(false);
+  };
+  const openModalHandler = (e) => {
+    e.preventDefault();
+    dispatch(uiActions.setIsOpen({ modalIsOpen: true }));
   };
 
   // console.log(user);
@@ -32,7 +41,7 @@ const UserPageContent = (props) => {
           }}
         />
         <div className={classes.button_box_wraper}>
-          <button onClick={() => setShowMOdal(true)}>Add course</button>
+          <button onClick={openModalHandler}>Add course</button>
           <button>Add student</button>
         </div>
       </SideBar>

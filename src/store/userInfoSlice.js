@@ -13,8 +13,7 @@ const userInfoSlice = createSlice({
       university: null,
       faculty: null,
     },
-    pendingRequests: [],
-    approvedRequests: ["6789"],
+    userCourses: [],
   },
   reducers: {
     settingUserInfo(state, action) {
@@ -23,6 +22,7 @@ const userInfoSlice = createSlice({
       state.userType = action.payload.userType;
       state.userInfoFilled = action.payload.userInfoFilled;
       state.userInfo = action.payload.userInfo;
+      state.userCourses = action.payload.userCourses;
     },
   },
 });
