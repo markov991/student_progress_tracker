@@ -11,12 +11,18 @@ const AddCourseForm = ({ onClose }) => {
   const courseYear = useRef();
   const addCourseHandle = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    const data = {
-      courseName: courseName.current.value,
-      courseYear: courseYear.current.value,
-    };
-    dispatch(addingCourseToUser(userId, data));
+    if (courseName.current.value && courseYear.current.value) {
+      setIsLoading(true);
+      const data = {
+        courseName: courseName.current.value,
+        courseYear: courseYear.current.value,
+      };
+      dispatch(addingCourseToUser(userId, data));
+    } else {
+      //Change into something more elegant and with style
+      alert("Please enter course name and year");
+    }
+    console.log();
 
     console.log(courseName.current.value, courseYear.current.value);
   };
@@ -35,7 +41,7 @@ const AddCourseForm = ({ onClose }) => {
               />
               <label htmlFor="courseYear">Course year</label>
               <select name="year" id="courseYear" ref={courseYear}>
-                <option>Please select course year</option>
+                <option value="">Please select course year</option>
                 <option value="I">I</option>
                 <option value="II">II</option>
                 <option value="III">III</option>

@@ -17,6 +17,18 @@ export const gettingDataFromDatabase = (userId) => {
     try {
       const dataFetchResult = await gettingData();
       console.log(dataFetchResult);
+      const uCarray = [];
+      if (dataFetchResult.userCourses) {
+        for (const key in dataFetchResult.userCourses) {
+          const course = {
+            id: key,
+            ...dataFetchResult.userCourses[key],
+          };
+          console.log(key);
+
+          uCarray.push(course);
+        }
+      }
       dispatch(
         userInfoActions.settingUserInfo({
           userName: dataFetchResult.userName,
@@ -24,7 +36,7 @@ export const gettingDataFromDatabase = (userId) => {
           userInfo: dataFetchResult.userInfo,
           userId: userId,
           userInfoFilled: dataFetchResult.userInfoFilled,
-          userCourses: dataFetchResult.userCourses,
+          userCourses: uCarray,
         })
       );
       dispatch(uiActions.setIsLoading({ isLoading: false }));

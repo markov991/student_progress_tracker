@@ -9,22 +9,51 @@ import MainBox from "../UI/MainBox";
 import BasicUserInfo from "./BasicUserInfo";
 import Modal from "../UI/Modal";
 import AddCourseForm from "../Forms/addCourseForm";
+import AddStudentForm from "../Forms/AddStudentForm";
 
 const UserPageContent = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userInfo);
   const showModal = useSelector((state) => state.ui.modalIsOpen);
-  console.log(showModal);
+  const modalType = useSelector((state) => state.ui.modalType);
+  console.log(showModal, modalType);
 
   // const [showModal, setShowMOdal] = useState(false);
   const closeModalHandler = (e) => {
     e.preventDefault();
-    dispatch(uiActions.setIsOpen({ modalIsOpen: false }));
+    dispatch(
+      uiActions.setIsOpen({
+        modalIsOpen: false,
+        modalIsAddCourse: false,
+        modalIsAddStudent: false,
+      })
+    );
     // setShowMOdal(false);
   };
-  const openModalHandler = (e) => {
+  const openAddCourseModalHandler = (e) => {
     e.preventDefault();
-    dispatch(uiActions.setIsOpen({ modalIsOpen: true }));
+    dispatch(
+      uiActions.setIsOpen({
+        modalIsOpen: true,
+        modalIsAddCourse: true,
+        modalIsAddStudent: false,
+      })
+    );
+  };
+  const openAddStudentModalHandler = (e) => {
+    e.preventDefault();
+
+    if (user.userCourses.length === 0) {
+      alert("no courses found please add course first");
+      return;
+    }
+    dispatch(
+      uiActions.setIsOpen({
+        modalIsOpen: true,
+        modalIsAddCourse: false,
+        modalIsAddStudent: true,
+      })
+    );
   };
 
   // console.log(user);
@@ -41,8 +70,8 @@ const UserPageContent = (props) => {
           }}
         />
         <div className={classes.button_box_wraper}>
-          <button onClick={openModalHandler}>Add course</button>
-          <button>Add student</button>
+          <button onClick={openAddCourseModalHandler}>Add course</button>
+          <button onClick={openAddStudentModalHandler}>Add student</button>
         </div>
       </SideBar>
       <MainBox />
@@ -50,7 +79,12 @@ const UserPageContent = (props) => {
       {showModal &&
         createPortal(
           <Modal onClose={closeModalHandler}>
-            <AddCourseForm onClose={closeModalHandler} />
+            {modalType.modalIsAddCourse && (
+              <AddCourseForm onClose={closeModalHandler} />
+            )}
+            {modalType.modalIsAddStudent && (
+              <AddStudentForm onClose={closeModalHandler} />
+            )}
             {/* <button onClick={closeModalHandler}>Close</button> */}
           </Modal>,
           document.body
