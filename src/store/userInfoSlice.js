@@ -14,6 +14,7 @@ const userInfoSlice = createSlice({
       faculty: null,
     },
     userCourses: [],
+    students: [],
   },
   reducers: {
     settingUserInfo(state, action) {
@@ -23,6 +24,7 @@ const userInfoSlice = createSlice({
       state.userInfoFilled = action.payload.userInfoFilled;
       state.userInfo = action.payload.userInfo;
       state.userCourses = action.payload.userCourses;
+      state.students = action.payload.students;
     },
   },
 });

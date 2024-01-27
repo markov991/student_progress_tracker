@@ -37,6 +37,7 @@ export const gettingDataFromDatabase = (userId) => {
           userId: userId,
           userInfoFilled: dataFetchResult.userInfoFilled,
           userCourses: uCarray,
+          students: dataFetchResult.students,
         })
       );
       dispatch(uiActions.setIsLoading({ isLoading: false }));
@@ -65,6 +66,33 @@ export const addingCourseToUser = (userId, course) => {
     }
     try {
       // const data = await sendingCourseData.json();
+      dispatch(gettingDataFromDatabase(userId));
+      dispatch(uiActions.setIsOpen({ modalIsOpen: false }));
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+
+export const addingStudentToCourse = (userId, courseId, studentInfo) => {
+  return async (dispatch) => {
+    const sendingStudentData = await fetch(
+      `https://student-progress-tracker-f93fc-default-rtdb.firebaseio.com/users/${userId}/userCourses/${courseId}/students.json`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          studentFirstName: studentInfo.studentFirstName,
+          studentLastName: studentInfo.studentLastName,
+          studentId: studentInfo.studentId,
+          studentScore: null,
+        }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    if (!sendingStudentData) {
+      throw new Error("Student data wasnt sent");
+    }
+    try {
       dispatch(gettingDataFromDatabase(userId));
       dispatch(uiActions.setIsOpen({ modalIsOpen: false }));
     } catch (error) {
