@@ -10,6 +10,7 @@ import BasicUserInfo from "./BasicUserInfo";
 import Modal from "../UI/Modal";
 import AddCourseForm from "../Forms/addCourseForm";
 import AddStudentForm from "../Forms/AddStudentForm";
+import MainBoxContent from "./MainBoxContent";
 
 const UserPageContent = (props) => {
   const dispatch = useDispatch();
@@ -74,7 +75,9 @@ const UserPageContent = (props) => {
           <button onClick={openAddStudentModalHandler}>Add student</button>
         </div>
       </SideBar>
-      <MainBox />
+      <MainBox>
+        <MainBoxContent />
+      </MainBox>
 
       {showModal &&
         createPortal(

@@ -1,0 +1,24 @@
+.filterCoursesBox {
+  border-bottom: solid rgb(196, 196, 196) 1px;
+  margin: 2rem;
+}
+.filterCoursesBox button {
+  /* margin-bottom: 1rem; */
+  padding-right: 2rem;
+  border: none;
+  /* background: transparent; */
+  font-size: 1.8rem;
+  transition: all 0.5s;
+}
+.filterCoursesBox button:hover,
+.filterCoursesBox button:active {
+  cursor: pointer;
+  scale: 1.2;
+}
+.filterCoursesList {
+  margin: 2rem;
+  color: black;
+}
+.courseName {
+  border-bottom: solid rgb(196, 196, 196) 1px;
+}

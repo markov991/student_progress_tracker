@@ -20,11 +20,22 @@ export const gettingDataFromDatabase = (userId) => {
       const uCarray = [];
       if (dataFetchResult.userCourses) {
         for (const key in dataFetchResult.userCourses) {
-          const course = {
+          const courseObject = {
             id: key,
             ...dataFetchResult.userCourses[key],
           };
-          console.log(key);
+          const students = [];
+          for (const key in courseObject.students) {
+            const student = {
+              id: key,
+              ...courseObject.students[key],
+            };
+            students.push(student);
+          }
+          const course = {
+            ...courseObject,
+            students: students,
+          };
 
           uCarray.push(course);
         }
