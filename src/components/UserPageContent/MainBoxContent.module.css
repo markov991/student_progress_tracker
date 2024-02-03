@@ -22,3 +22,35 @@
 .courseName {
   border-bottom: solid rgb(196, 196, 196) 1px;
 }
+.studentInfoDescription {
+  width: 100%;
+  background: #00355ea7;
+  color: aliceblue;
+  margin: 5px 0;
+  border-radius: 3px;
+  display: grid;
+  grid-template-columns: 3fr 6fr 1fr;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.studentInfoDescription > div {
+  margin-left: 1rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.studentInfoDescription > div > span {
+  margin-left: 1rem;
+}
+
+.noStudentsNotion {
+  display: flex;
+  justify-content: center;
+}
+
+.noStudentsNotion span {
+  font-size: 1.6rem;
+  background: rgba(255, 0, 0, 0.233);
+  padding: 1rem;
+  border-radius: 5px;
+}

@@ -1,0 +1,8 @@
+.studentCardBox {
+  width: 100%;
+  background: #3a93ff42;
+  margin: 5px 0;
+  border-radius: 3px;
+  display: grid;
+  grid-template-columns: 3fr 6fr 1fr;
+}

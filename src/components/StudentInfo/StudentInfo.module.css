@@ -1,0 +1,27 @@
+.studentGeneralInfo {
+  font-size: 1.6rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.studentGeneralInfo > span {
+  /* margin-right: 2rem; */
+  margin: 1rem 0 1rem 1rem;
+}
+.studentGeneralInfo:first-child {
+  margin-left: 1rem;
+}
+
+.IconBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.IconBox > img {
+  width: 1.8rem;
+  height: 1.8rem;
+  cursor: pointer;
+}

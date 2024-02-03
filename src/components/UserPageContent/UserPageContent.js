@@ -37,7 +37,7 @@ const UserPageContent = (props) => {
       uiActions.setIsOpen({
         modalIsOpen: true,
         modalIsAddCourse: true,
-        modalIsAddStudent: false,
+        // modalIsAddStudent: false,
       })
     );
   };
@@ -51,7 +51,7 @@ const UserPageContent = (props) => {
     dispatch(
       uiActions.setIsOpen({
         modalIsOpen: true,
-        modalIsAddCourse: false,
+        // modalIsAddCourse: false,
         modalIsAddStudent: true,
       })
     );

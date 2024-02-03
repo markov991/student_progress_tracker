@@ -112,6 +112,26 @@ export const addingStudentToCourse = (userId, courseId, studentInfo) => {
   };
 };
 
+export const removingStudentFromCourse = (userId, courseId, studentId) => {
+  return async (dispatch) => {
+    const response = await fetch(
+      `https://student-progress-tracker-f93fc-default-rtdb.firebaseio.com/users/${userId}/userCourses/${courseId}/students/${studentId}.json`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (!response) {
+      throw new Error("Student wasn't remove!");
+    }
+    try {
+      dispatch(gettingDataFromDatabase(userId));
+      // dispatch(uiActions.s)
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+
 export const sendingDataAfterRegistrationToDatabase = (userId, info) => {
   return async (dispatch) => {
     const sendingData = await fetch(
