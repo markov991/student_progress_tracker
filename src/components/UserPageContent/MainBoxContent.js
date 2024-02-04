@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as classes from "./MainBoxContent.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import StudentCard from "../UI/StudentCard";
@@ -9,23 +9,49 @@ import { removingStudentFromCourse } from "../../store/userInfoActions";
 const MainBoxContent = () => {
   const dispatch = useDispatch();
   const userCourses = useSelector((state) => state.userInfo.userCourses);
+  const [filteredCourses, setFilteredCourses] = useState([...userCourses]);
+  const [activefilter, setActiveFilter] = useState("all");
   const userId = useSelector((state) => state.auth.userId);
   const deleteStudentHandler = (student) => {
+    console.log(student);
     const { studentId, courseId } = student;
 
     dispatch(removingStudentFromCourse(userId, courseId, studentId));
   };
+  const filterCoursesHandler = (courseId) => {
+    setFilteredCourses(
+      userCourses.filter((course) => course.id === courseId.idC)
+    );
+    setActiveFilter(courseId.idC);
+    console.log(courseId);
+  };
+  const showAllHandler = () => {
+    setFilteredCourses([...userCourses]);
+    setActiveFilter("all");
+  };
+
   return (
     <>
-      <div className={classes.filterCoursesBox}>
-        <button>All</button>
+      <div className={`${classes.filterCoursesBox}`}>
+        <button
+          className={activefilter === "all" ? classes.activeButton : ""}
+          onClick={showAllHandler}
+        >
+          All
+        </button>
         {userCourses.map((course) => (
-          <button key={course.id}>{course.courseName}</button>
+          <button
+            className={activefilter === course.id ? classes.activeButton : ""}
+            onClick={() => filterCoursesHandler({ idC: course.id })}
+            key={course.id}
+          >
+            {course.courseName}
+          </button>
         ))}
       </div>
       <div className={classes.filterCoursesList}>
         {/* <div className={student}></div> */}
-        {userCourses.map((course) => (
+        {filteredCourses.map((course) => (
           <div key={course.id}>
             <div className={classes.courseName}>
               <h1>{course.courseName}</h1>

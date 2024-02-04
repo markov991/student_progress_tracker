@@ -8,12 +8,19 @@
   border: none;
   /* background: transparent; */
   font-size: 1.8rem;
+  background: rgb(0, 195, 209);
+  border-radius: 0 5px 0 0;
   transition: all 0.5s;
 }
 .filterCoursesBox button:hover,
 .filterCoursesBox button:active {
   cursor: pointer;
   scale: 1.2;
+}
+.activeButton {
+  background: rgb(0, 144, 155);
+  color: #fff;
+  padding-top: 5px;
 }
 .filterCoursesList {
   margin: 2rem;
