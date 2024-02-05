@@ -10,6 +10,7 @@ const StudentInfo = ({
   lastName,
   studentId,
   onDelete,
+  onAddExam,
 }) => {
   return (
     <>
@@ -20,7 +21,7 @@ const StudentInfo = ({
       <div>{children}</div>
       <div>
         <div className={classes.IconBox}>
-          <img src={addIcon} alt="Trash can" />
+          <img onClick={onAddExam} src={addIcon} alt="Add icon" />
           <img onClick={onDelete} src={trashCan} alt="Trash can" />
           <img src={openIcon} alt="mag glass" />
         </div>

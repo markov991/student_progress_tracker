@@ -30,7 +30,10 @@ const AddStudentForm = ({ onClose }) => {
   return (
     <>
       {!isLoading && (
-        <form className={classes.addStudentModalLayout}>
+        <form
+          onSubmit={addStudentHandler}
+          className={classes.addStudentModalLayout}
+        >
           <div>
             <label htmlFor="firstname">First name</label>
             <input
@@ -64,7 +67,7 @@ const AddStudentForm = ({ onClose }) => {
           </div>
 
           <div className={classes.buttons}>
-            <button onClick={addStudentHandler}>Add</button>
+            <button type="submit">Add</button>
             <button onClick={onClose}>Close</button>
           </div>
         </form>

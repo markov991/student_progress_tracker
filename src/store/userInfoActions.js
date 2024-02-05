@@ -131,6 +131,30 @@ export const removingStudentFromCourse = (userId, courseId, studentId) => {
     }
   };
 };
+export const addingExamToStudent = (userId, courseId, studentId, examInfo) => {
+  return async (dispatch) => {
+    const sendingExamData = await fetch(
+      `https://student-progress-tracker-f93fc-default-rtdb.firebaseio.com/users/${userId}/userCourses/${courseId}/students/${studentId}/exams.json`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          examName: examInfo.examName,
+          examScore: examInfo.examScore,
+        }),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    if (!sendingExamData.ok) {
+      throw new Error("Exam data sending FAILED");
+    }
+    try {
+      dispatch(gettingDataFromDatabase(userId));
+      dispatch(uiActions.setIsOpen({ modalIsOpen: false }));
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
 
 export const sendingDataAfterRegistrationToDatabase = (userId, info) => {
   return async (dispatch) => {

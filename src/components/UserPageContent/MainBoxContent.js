@@ -1,22 +1,34 @@
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import * as classes from "./MainBoxContent.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import StudentCard from "../UI/StudentCard";
 import StudentInfo from "../StudentInfo/StudentInfo";
+import AddExamForm from "../Forms/AddExamForm";
 
 import { removingStudentFromCourse } from "../../store/userInfoActions";
+import Modal from "../UI/Modal";
 
 const MainBoxContent = () => {
   const dispatch = useDispatch();
   const userCourses = useSelector((state) => state.userInfo.userCourses);
+  const [showModal, setShomModal] = useState(false);
   const [filteredCourses, setFilteredCourses] = useState([...userCourses]);
   const [activefilter, setActiveFilter] = useState("all");
+  const [activeStudent, setActiveStudent] = useState({});
   const userId = useSelector((state) => state.auth.userId);
   const deleteStudentHandler = (student) => {
     console.log(student);
     const { studentId, courseId } = student;
 
     dispatch(removingStudentFromCourse(userId, courseId, studentId));
+  };
+  const addExamModalHandler = (student) => {
+    const { studentInfo, courseId, courseName } = student;
+    console.log(studentInfo, courseId, courseName);
+    setShomModal(true);
+    setActiveStudent({ ...student });
+    console.log(activeStudent);
   };
   const filterCoursesHandler = (courseId) => {
     setFilteredCourses(
@@ -28,6 +40,9 @@ const MainBoxContent = () => {
   const showAllHandler = () => {
     setFilteredCourses([...userCourses]);
     setActiveFilter("all");
+  };
+  const closeModalHandler = () => {
+    setShomModal(false);
   };
 
   return (
@@ -75,6 +90,13 @@ const MainBoxContent = () => {
                           courseId: course.id,
                         })
                       }
+                      onAddExam={() =>
+                        addExamModalHandler({
+                          studentInfo: student,
+                          courseId: course.id,
+                          courseName: course.courseName,
+                        })
+                      }
                       firstName={student.studentFirstName}
                       lastName={student.studentLastName}
                       studentId={student.studentId}
@@ -96,6 +118,20 @@ const MainBoxContent = () => {
           </div>
         ))}
       </div>
+      {showModal &&
+        createPortal(
+          <Modal onClose={closeModalHandler}>
+            <AddExamForm
+              onClose={closeModalHandler}
+              // studentName={`${activeStudent.studentInfo.studentFirstName} ${activeStudent.studentInfo.studentLastName}`}
+              courseName={activeStudent.courseName}
+              // studentId={activeStudent.studentInfo.studentId}
+              studentInfo={activeStudent.studentInfo}
+              courseId={activeStudent.courseId}
+            />
+          </Modal>,
+          document.body
+        )}
     </>
   );
 };
