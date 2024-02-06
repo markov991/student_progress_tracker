@@ -30,7 +30,7 @@ const AddExamForm = ({ onClose, studentInfo, courseName, courseId }) => {
       <div className={classes.examInfoBox}>
         <div className={classes.courseChapterBox}>
           <label htmlFor="courseChapter">Curse chapter</label>
-          <input ref={courseChapter} type="text" id="courseChapter" />
+          <input ref={courseChapter} type="text" id="courseChapter" max={10} />
         </div>
         <div className={classes.scoreBox}>
           <label htmlFor="score">Score: </label>

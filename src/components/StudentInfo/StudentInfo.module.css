@@ -2,6 +2,7 @@
   font-size: 1.6rem;
   display: grid;
   grid-template-columns: 3fr 1fr;
+  align-items: center;
 }
 .studentGeneralInfo > span {
   /* margin-right: 2rem; */
@@ -24,4 +25,8 @@
   width: 1.8rem;
   height: 1.8rem;
   cursor: pointer;
+}
+.examBox {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
 }

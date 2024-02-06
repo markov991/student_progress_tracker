@@ -16,7 +16,7 @@ export const gettingDataFromDatabase = (userId) => {
     };
     try {
       const dataFetchResult = await gettingData();
-      console.log(dataFetchResult);
+
       const uCarray = [];
       if (dataFetchResult.userCourses) {
         for (const key in dataFetchResult.userCourses) {
@@ -24,13 +24,29 @@ export const gettingDataFromDatabase = (userId) => {
             id: key,
             ...dataFetchResult.userCourses[key],
           };
+
           const students = [];
           for (const key in courseObject.students) {
             const student = {
               id: key,
               ...courseObject.students[key],
             };
-            students.push(student);
+            const studentExams = [];
+            for (const key in student.exams) {
+              const exam = {
+                id: key,
+                ...student.exams[key],
+              };
+
+              studentExams.push(exam);
+            }
+
+            const studentX = {
+              ...student,
+              exams: studentExams,
+            };
+
+            students.push(studentX);
           }
           const course = {
             ...courseObject,

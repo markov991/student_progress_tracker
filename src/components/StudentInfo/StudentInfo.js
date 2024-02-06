@@ -18,7 +18,7 @@ const StudentInfo = ({
         <span>{`${firstName} ${lastName}`}</span>
         <span>{studentId}</span>
       </div>
-      <div>{children}</div>
+      <div className={classes.examBox}>{children}</div>
       <div>
         <div className={classes.IconBox}>
           <img onClick={onAddExam} src={addIcon} alt="Add icon" />

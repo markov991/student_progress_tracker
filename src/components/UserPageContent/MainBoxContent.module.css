@@ -40,6 +40,13 @@
   align-items: center;
   font-size: 1.2rem;
 }
+.examsBox {
+  display: flex;
+  gap: 2rem;
+}
+.examsBox > :first-child {
+  margin-left: 2rem;
+}
 
 .studentInfoDescription > div {
   margin-left: 1rem;

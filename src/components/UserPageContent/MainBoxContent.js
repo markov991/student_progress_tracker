@@ -8,6 +8,8 @@ import AddExamForm from "../Forms/AddExamForm";
 
 import { removingStudentFromCourse } from "../../store/userInfoActions";
 import Modal from "../UI/Modal";
+import IndividualExams from "../IndividualExams/IndividualExams";
+import OverolScore from "../OverolScore/OverolScore";
 
 const MainBoxContent = () => {
   const dispatch = useDispatch();
@@ -101,11 +103,17 @@ const MainBoxContent = () => {
                       lastName={student.studentLastName}
                       studentId={student.studentId}
                     >
-                      <span>1</span>
-                      <span>2</span>
-                      <span>3</span>
+                      <div className={classes.examsBox}>
+                        {student.exams.map((exam) => (
+                          <IndividualExams
+                            examName={exam.examName}
+                            examScore={exam.examScore}
+                            key={exam.id}
+                          />
+                        ))}
+                      </div>
+                      <OverolScore examScores={student.exams} />
                     </StudentInfo>
-                    {/* <div key={student.id}>{student.studentFirstName}</div> */}
                   </StudentCard>
                 ))}
 
