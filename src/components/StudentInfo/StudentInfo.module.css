@@ -29,4 +29,5 @@
 .examBox {
   display: grid;
   grid-template-columns: 9fr 1fr;
+  margin: 1rem 0 1rem;
 }

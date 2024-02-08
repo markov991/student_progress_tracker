@@ -41,11 +41,9 @@
   font-size: 1.2rem;
 }
 .examsBox {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 2rem;
-}
-.examsBox > :first-child {
-  margin-left: 2rem;
 }
 
 .studentInfoDescription > div {

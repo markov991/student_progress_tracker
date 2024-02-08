@@ -9,7 +9,7 @@ import AddExamForm from "../Forms/AddExamForm";
 import { removingStudentFromCourse } from "../../store/userInfoActions";
 import Modal from "../UI/Modal";
 import IndividualExams from "../IndividualExams/IndividualExams";
-import OverolScore from "../OverolScore/OverolScore";
+import AverageScore from "../OverolScore/AverageScore";
 
 const MainBoxContent = () => {
   const dispatch = useDispatch();
@@ -112,7 +112,9 @@ const MainBoxContent = () => {
                           />
                         ))}
                       </div>
-                      <OverolScore examScores={student.exams} />
+                      {student.exams.length > 0 && (
+                        <AverageScore examScores={student.exams} />
+                      )}
                     </StudentInfo>
                   </StudentCard>
                 ))}
