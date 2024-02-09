@@ -1,0 +1,85 @@
+.studentInfoModalLayoyt {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.studentInfoSection {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+}
+.studentInfoSection > span {
+  margin-left: 3rem;
+}
+.studentInfoSection :nth-child(even) {
+  margin-bottom: 1rem;
+  /* padding: 5rem; */
+}
+.studentInfoSection :nth-child(odd) {
+  color: rgb(103, 103, 103);
+}
+.buttonBox {
+  grid-column: 1/-1;
+  text-align: center;
+}
+
+.buttonBox button {
+  cursor: pointer;
+  background-color: transparent;
+
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  border: 2px solid #0075ce;
+}
+.buttonBox button:active,
+.buttonBox button:hover {
+  background-color: #0075ce;
+  color: #fff;
+}
+
+/* .examsBox {
+} */
+.examsBox h2 {
+  text-align: center;
+}
+.examListBox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.examListBox > div {
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 5px;
+
+  position: relative;
+}
+.deleteExamIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  cursor: pointer;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 1000;
+}
+
+.defaultResult {
+  background: #f6ff00;
+}
+.betterResult {
+  background: #15ff00;
+}
+.badResult {
+  background: #c02f1d;
+}
+.examName {
+  font-size: 1.2rem;
+}
+.examScore {
+  font-size: 1.8rem;
+}

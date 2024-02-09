@@ -10,11 +10,13 @@ import { removingStudentFromCourse } from "../../store/userInfoActions";
 import Modal from "../UI/Modal";
 import IndividualExams from "../IndividualExams/IndividualExams";
 import AverageScore from "../OverolScore/AverageScore";
+import StudentInfoModal from "../StudentInfoModal/StudentInfoModal";
 
 const MainBoxContent = () => {
   const dispatch = useDispatch();
   const userCourses = useSelector((state) => state.userInfo.userCourses);
-  const [showModal, setShomModal] = useState(false);
+  const [addExamModal, setAddExamModal] = useState(false);
+  const [openStudentInfoModal, setOpenStudentInfoModal] = useState(false);
   const [filteredCourses, setFilteredCourses] = useState([...userCourses]);
   const [activefilter, setActiveFilter] = useState("all");
   const [activeStudent, setActiveStudent] = useState({});
@@ -28,9 +30,14 @@ const MainBoxContent = () => {
   const addExamModalHandler = (student) => {
     const { studentInfo, courseId, courseName } = student;
     console.log(studentInfo, courseId, courseName);
-    setShomModal(true);
+
+    setAddExamModal(true);
     setActiveStudent({ ...student });
     console.log(activeStudent);
+  };
+  const openInfoHandler = (student) => {
+    setOpenStudentInfoModal(true);
+    setActiveStudent({ ...student });
   };
   const filterCoursesHandler = (courseId) => {
     setFilteredCourses(
@@ -44,7 +51,8 @@ const MainBoxContent = () => {
     setActiveFilter("all");
   };
   const closeModalHandler = () => {
-    setShomModal(false);
+    setAddExamModal(false);
+    setOpenStudentInfoModal(false);
   };
 
   return (
@@ -67,7 +75,6 @@ const MainBoxContent = () => {
         ))}
       </div>
       <div className={classes.filterCoursesList}>
-        {/* <div className={student}></div> */}
         {filteredCourses.map((course) => (
           <div key={course.id}>
             <div className={classes.courseName}>
@@ -94,6 +101,13 @@ const MainBoxContent = () => {
                       }
                       onAddExam={() =>
                         addExamModalHandler({
+                          studentInfo: student,
+                          courseId: course.id,
+                          courseName: course.courseName,
+                        })
+                      }
+                      openInfo={() =>
+                        openInfoHandler({
                           studentInfo: student,
                           courseId: course.id,
                           courseName: course.courseName,
@@ -128,7 +142,7 @@ const MainBoxContent = () => {
           </div>
         ))}
       </div>
-      {showModal &&
+      {addExamModal &&
         createPortal(
           <Modal onClose={closeModalHandler}>
             <AddExamForm
@@ -138,6 +152,18 @@ const MainBoxContent = () => {
               // studentId={activeStudent.studentInfo.studentId}
               studentInfo={activeStudent.studentInfo}
               courseId={activeStudent.courseId}
+            />
+          </Modal>,
+          document.body
+        )}
+      {openStudentInfoModal &&
+        createPortal(
+          <Modal onClose={closeModalHandler}>
+            <StudentInfoModal
+              courseName={activeStudent.courseName}
+              studentInfo={activeStudent.studentInfo}
+              courseId={activeStudent.courseId}
+              onClose={closeModalHandler}
             />
           </Modal>,
           document.body

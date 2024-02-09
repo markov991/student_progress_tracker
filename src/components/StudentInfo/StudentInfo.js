@@ -11,6 +11,7 @@ const StudentInfo = ({
   studentId,
   onDelete,
   onAddExam,
+  openInfo,
 }) => {
   return (
     <>
@@ -23,7 +24,7 @@ const StudentInfo = ({
         <div className={classes.IconBox}>
           <img onClick={onAddExam} src={addIcon} alt="Add icon" />
           <img onClick={onDelete} src={trashCan} alt="Trash can" />
-          <img src={openIcon} alt="mag glass" />
+          <img onClick={openInfo} src={openIcon} alt="mag glass" />
         </div>
       </div>
     </>

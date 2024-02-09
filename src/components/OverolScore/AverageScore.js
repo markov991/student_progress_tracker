@@ -2,11 +2,11 @@ import React from "react";
 import * as classes from "./AverageScore.module.css";
 
 const OverolScore = ({ examScores }) => {
-  console.log(examScores);
-  const avgScore =
+  const avgScore = Math.trunc(
     examScores.reduce((accumulator, score) => {
       return accumulator + +score.examScore;
-    }, 0) / examScores.length;
+    }, 0) / examScores.length
+  );
   return (
     <div className={classes.overolBox}>
       <div

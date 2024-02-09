@@ -172,6 +172,31 @@ export const addingExamToStudent = (userId, courseId, studentId, examInfo) => {
   };
 };
 
+export const removingExamFromDatabase = (
+  userId,
+  courseId,
+  studentId,
+  examId
+) => {
+  return async (dispatch) => {
+    const sendingExamData = await fetch(
+      `https://student-progress-tracker-f93fc-default-rtdb.firebaseio.com/users/${userId}/userCourses/${courseId}/students/${studentId}/exams/${examId}.json`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (!sendingExamData) {
+      throw new Error("Exam wasn't remove!");
+    }
+    try {
+      dispatch(gettingDataFromDatabase(userId));
+      // dispatch(uiActions.s)
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+
 export const sendingDataAfterRegistrationToDatabase = (userId, info) => {
   return async (dispatch) => {
     const sendingData = await fetch(

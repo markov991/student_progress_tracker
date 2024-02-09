@@ -21,7 +21,7 @@ const AddExamForm = ({ onClose, studentInfo, courseName, courseId }) => {
     <form onSubmit={addExamHandler} className={classes.addExamModalLayout}>
       <div className={classes.addExamStudentInfo}>
         <span>Student name: </span>
-        <span>{studentInfo.studentName}</span>
+        <span>{`${studentInfo.studentFirstName} ${studentInfo.studentLastName}`}</span>
         <span>StudentId: </span>
         <span>{studentInfo.studentId}</span>
         <span>Course:</span>

@@ -22,9 +22,7 @@ const AddCourseForm = ({ onClose }) => {
       //Change into something more elegant and with style
       alert("Please enter course name and year");
     }
-    console.log();
-
-    console.log(courseName.current.value, courseYear.current.value);
+    
   };
   return (
     <>
